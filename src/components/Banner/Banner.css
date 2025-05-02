@@ -1,0 +1,83 @@
+#app { height: 100% }
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+/* Smaller Swiper buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 35px;
+  height: 35px;
+  background-color: rgba(0, 0, 0, 0.5); /* dark translucent background */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Smaller arrow icon */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px; /* default is around 20px */
+}
+
+/* Optional: adjust positioning */
+.swiper-button-next {
+  right: 10px;
+}
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.swiper-slide {
+  
+  
+  color: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.parallax-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4); /* Change opacity here */
+  z-index: 1;
+}
+.swiper-slide .title {
+ 
+  font-weight: 300;
+}
+
+
+
+.swiper-slide .text {
+
+  max-width: 400px;
+  line-height: 1.3;
+}

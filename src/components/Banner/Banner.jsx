@@ -12,10 +12,12 @@ import { Parallax, Pagination, Navigation } from "swiper/modules";
 
 import "./Banner.css";
 import image from "../../assets/school.jpg";
+import PrimaryButton from "../Button/PrimaryButton";
+import SecondaryButton from "../Button/SecondaryButton";
 
 const Banner = () => {
     return (
-        <div className="h-[500px]">
+        <div className="h-[500px] md:h-[700px]">
             <Swiper
                 style={{
                     "--swiper-navigation-color": "#fff",
@@ -39,11 +41,17 @@ const Banner = () => {
                     data-swiper-parallax="-23%"
                 ></div>
                 <SwiperSlide className="">
-                    <div className="flex flex-col items-center justify-center h-[500px]">
-                        <div className="title text-2xl md:text-4xl " data-swiper-parallax="-300">
+                    <div className="flex flex-col items-center justify-center h-[500px] md:h-[700px]">
+                        <div
+                            className=" text-2xl md:text-4xl font-bold my-7"
+                            data-swiper-parallax="-300"
+                        >
                             Empower Your Learning Journey
                         </div>
-                        <div className="subtitle text-lg" data-swiper-parallax="-200">
+                        <div
+                            className="subtitle text-lg my-2"
+                            data-swiper-parallax="-200"
+                        >
                             Learn. Grow. Succeed.
                         </div>
                         <div className="text" data-swiper-parallax="-100">
@@ -54,45 +62,67 @@ const Banner = () => {
                                 learning platform built for the future.
                             </p>
                         </div>
+                        <div className="flex gap-5 mt-5">
+                            <PrimaryButton buttonText="Get Started"></PrimaryButton>
+                            <SecondaryButton buttonText="Our Courses"></SecondaryButton>
+                        </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                  <div className="flex flex-col items-center justify-center h-[500px]">
-                  <div className="title text-2xl md:text-4xl " data-swiper-parallax="-300">
-                        Teach, Inspire, Grow
+                    <div className="flex flex-col items-center justify-center h-[500px] md:h-[700px]">
+                        <div
+                            className="text-2xl md:text-4xl font-bold my-7 "
+                            data-swiper-parallax="-300"
+                        >
+                            Teach, Inspire, Grow
+                        </div>
+                        <div
+                            className="subtitle text-lg my-2"
+                            data-swiper-parallax="-200"
+                        >
+                            Become an EduManage Instructor
+                        </div>
+                        <div className="text" data-swiper-parallax="-100">
+                            <p className="text-center">
+                                Share your expertise with the world. Apply as an
+                                instructor and inspire students globally through
+                                your experience and knowledge, all from one
+                                powerful platform.
+                            </p>
+                        </div>
+                        <div className="flex gap-5 mt-5">
+                            <PrimaryButton buttonText="Get Started"></PrimaryButton>
+                            <SecondaryButton buttonText="Our Courses"></SecondaryButton>
+                        </div>
                     </div>
-                    <div className="subtitle text-lg" data-swiper-parallax="-200">
-                        Become an EduManage Instructor
-                    </div>
-                    <div className="text" data-swiper-parallax="-100">
-                        <p className="text-center">
-                            Share your expertise with the world. Apply as an
-                            instructor and inspire students globally through
-                            your experience and knowledge, all from one powerful
-                            platform.
-                        </p>
-                    </div>
-                  </div>
-                    
                 </SwiperSlide>
                 <SwiperSlide>
-                  <div className="flex flex-col items-center justify-center h-[500px]">
-
-                    <div className="title text-2xl md:text-4xl " data-swiper-parallax="-300">
-                        All-in-One Class Management
+                    <div className="flex flex-col items-center justify-center h-[500px] md:h-[700px]">
+                        <div
+                            className="text-2xl md:text-4xl font-bold my-7 "
+                            data-swiper-parallax="-300"
+                        >
+                            All-in-One Class Management
+                        </div>
+                        <div
+                            className="subtitle text-lg my-2"
+                            data-swiper-parallax="-200"
+                        >
+                            Smart Tools for Smarter Learning
+                        </div>
+                        <div className="text" data-swiper-parallax="-100">
+                            <p className="text-center">
+                                Manage classes, assignments, enrollments, and
+                                feedback in one place. EduManage provides
+                                everything you need to teach, learn, and grow —
+                                efficiently and effortlessly.
+                            </p>
+                        </div>
+                        <div className="flex gap-5 mt-5">
+                            <PrimaryButton buttonText="Get Started"></PrimaryButton>
+                            <SecondaryButton buttonText="Our Courses"></SecondaryButton>
+                        </div>
                     </div>
-                    <div className="subtitle text-lg" data-swiper-parallax="-200">
-                        Smart Tools for Smarter Learning
-                    </div>
-                    <div className="text" data-swiper-parallax="-100">
-                        <p className="text-center">
-                            Manage classes, assignments, enrollments, and
-                            feedback in one place. EduManage provides everything
-                            you need to teach, learn, and grow — efficiently and
-                            effortlessly.
-                        </p>
-                    </div>
-                  </div>
                 </SwiperSlide>
             </Swiper>
         </div>

@@ -1,0 +1,25 @@
+import React from "react";
+import CourseCard from "../CourseCard/CourseCard";
+
+
+const FeaturedCourses = () => {
+    return (
+        <div className="py-30">
+            <div>
+                <button className="btn btn-outline border-gray-600 px-10 rounded-4xl flex mx-auto ">
+                    Top Class Courses
+                </button>
+                <p className="text-5xl font-semibold text-center mt-8">
+                    Explore Featured Courses
+                </p>
+            </div>
+            <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-20">
+                <CourseCard></CourseCard>
+                <CourseCard></CourseCard>
+                <CourseCard></CourseCard>
+            </div>
+        </div>
+    );
+};
+
+export default FeaturedCourses;

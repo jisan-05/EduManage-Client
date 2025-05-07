@@ -5,9 +5,9 @@ import PrimaryButton from "../Button/PrimaryButton";
 
 const AboutUs = () => {
     return (
-        <div className="mt-20">
+        <div className="pt-32">
             <div>
-                <button className="btn btn-outline border-gray-600 px-10 rounded-4xl flex mx-auto">
+                <button className="btn btn-outline border-gray-600 px-10 rounded-4xl flex mx-auto ">
                     Get More About Us
                 </button>
             </div>
@@ -15,11 +15,11 @@ const AboutUs = () => {
                 <div className="flex-1 ">
                     <Lottie
                         animationData={aboutAnimation}
-                        className="w-96 h-96 md:pb-24 mx-auto"
+                        className="w-80 h-80 md:w-96 md:h-96 md:pb-24 mx-auto"
                     ></Lottie>
                 </div>
                 <div className="flex-1 justify-between ">
-                    <h3 className="text-2xl md:text-4xl mt-5">
+                    <h3 className="text-xl md:text-4xl mt-5">
                         Over 10 Years in Distant learning for Skill Development
                     </h3>
                     <p className="mt-5">

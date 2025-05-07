@@ -1,19 +1,21 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
 
 const Navbar = () => {
     return (
         <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
                 
-                <a className="btn btn-ghost text-xl">
-                    <img
-                        src="/logo.webp"
-                        className="w-8 h-8 md:w-12 md:h-12 rounded-full"
-                        alt=""
-                    />{" "}
-                    <span className="md:text-3xl">EDU MANAGE</span>
-                </a>
+                    <Link to='/' className="btn btn-ghost text-xl">
+                        <img
+                            src="/logo.webp"
+                            className="w-8 h-8 md:w-12 md:h-12 rounded-full"
+                            alt=""
+                        />{" "}
+                        <span className="md:text-3xl">EDU MANAGE</span>
+                    </Link>
+                
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -29,7 +31,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Login</a>
+            <button className="btn btn-neutral bg-[#07a698] hover:bg-[#01998c] border-none rounded-3xl px-6 py-2 text-white">Login</button>
                 <div className="dropdown dropdown-end">
                     <div
                         tabIndex={0}

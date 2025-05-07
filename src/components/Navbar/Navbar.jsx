@@ -19,13 +19,13 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li>
+                    <li className="text-lg font-semibold">
                         <NavLink>Home</NavLink>
                     </li>
-                    <li>
+                    <li className="text-lg font-semibold">
                         <NavLink>All Classes</NavLink>
                     </li>
-                    <li>
+                    <li className="text-lg font-semibold">
                         <NavLink>Teach on EduManage</NavLink>
                     </li>
                 </ul>

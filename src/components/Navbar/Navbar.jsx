@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import AuthContext from "../../Providers/AuthContext";
 
 const Navbar = () => {
+    const { user , logOut} = useContext(AuthContext);
+
+    const handleLogOut = () =>{
+        logOut()
+    }
+
     return (
         <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
-                
-                    <Link to='/' className="btn btn-ghost text-xl">
-                        <img
-                            src="/logo.webp"
-                            className="w-8 h-8 md:w-12 md:h-12 rounded-full"
-                            alt=""
-                        />{" "}
-                        <span className="md:text-3xl">EDU MANAGE</span>
-                    </Link>
-                
+                <Link to="/" className="btn btn-ghost text-xl">
+                    <img
+                        src="/logo.webp"
+                        className="w-8 h-8 md:w-12 md:h-12 rounded-full"
+                        alt=""
+                    />{" "}
+                    <span className="md:text-3xl">EDU MANAGE</span>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -31,7 +35,18 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-            <button className="btn btn-neutral bg-[#07a698] hover:bg-[#01998c] border-none rounded-3xl px-6 py-2 text-white">Login</button>
+                {user ? (
+                    <button onClick={handleLogOut} className="btn btn-neutral bg-orange-600 hover:bg-orange-700 border-none rounded-3xl px-6 py-2 text-white">
+                        Logout
+                    </button>
+                ) : (
+                    <Link to="/login">
+                        <button className="btn btn-neutral bg-[#07a698] hover:bg-[#01998c] border-none rounded-3xl px-6 py-2 text-white">
+                            Login
+                        </button>
+                    </Link>
+                )}
+
                 <div className="dropdown dropdown-end">
                     <div
                         tabIndex={0}

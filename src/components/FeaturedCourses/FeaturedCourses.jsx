@@ -1,8 +1,25 @@
 import React from "react";
 import CourseCard from "../CourseCard/CourseCard";
+import axios from "axios"; 
+import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
+
 
 
 const FeaturedCourses = () => {
+    const { data: courseData, isLoading ,error} = useQuery({
+        queryKey: ["courseData"],
+        queryFn: async () => {
+            const { data } = await axios.get("/cardData.json");
+            return data;
+        },
+    });
+    console.log(courseData)
+
+    if (isLoading) return <LoadingSpinner></LoadingSpinner>
+
+  if (error) return <p className="text-center mt-10 text-xl text-red-600">Error loading courses.</p>;
+
     return (
         <div className="py-30">
             <div>
@@ -14,9 +31,9 @@ const FeaturedCourses = () => {
                 </p>
             </div>
             <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 xl:gap-20">
-                <CourseCard></CourseCard>
-                <CourseCard></CourseCard>
-                <CourseCard></CourseCard>
+                {
+                    courseData.map(data => <CourseCard key={data._id} data={data}></CourseCard>)
+                }
             </div>
         </div>
     );

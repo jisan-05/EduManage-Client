@@ -1,89 +1,121 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import "./Navbar.css";
 import AuthContext from "../../Providers/AuthContext";
+import logo from "../../../src/assets/logo/image1.png";
 
 const Navbar = () => {
-    const { user , logOut} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+    // const [profile,setProfile] = useState('')
+    // useEffect(()=>{
+    //     setProfile(user?.photoURL)
+    // },[])
 
-    const handleLogOut = () =>{
-        logOut()
-    }
+    const signOut = () => {
+        logOut();
+    };
+    console.log(user?.photoURL);
 
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100">
             <div className="navbar-start">
                 <Link to="/" className="btn btn-ghost text-xl">
-                    <img
-                        src="/logo.webp"
-                        className="w-8 h-8 md:w-12 md:h-12 rounded-full"
-                        alt=""
-                    />{" "}
-                    <span className="md:text-3xl">EDU MANAGE</span>
+                    Lost and Found
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li className="text-lg font-semibold">
-                        <NavLink>Home</NavLink>
+                    <li className="">
+                        <NavLink to="/">Home</NavLink>
                     </li>
-                    <li className="text-lg font-semibold">
-                        <NavLink>All Classes</NavLink>
+                    <li>
+                        <NavLink to="/AddLostAndFoundItems">
+                            All Classes
+                        </NavLink>
                     </li>
-                    <li className="text-lg font-semibold">
-                        <NavLink>Teach on EduManage</NavLink>
+                    <li>
+                        <NavLink to="/AllLostAndFoundItems">
+                            Teach on EduManage
+                        </NavLink>
                     </li>
                 </ul>
             </div>
-            <div className="navbar-end">
-                {user ? (
-                    <button onClick={handleLogOut} className="btn btn-neutral bg-orange-600 hover:bg-orange-700 border-none rounded-3xl px-6 py-2 text-white">
-                        Logout
-                    </button>
-                ) : (
-                    <Link to="/login">
-                        <button className="btn btn-neutral bg-[#07a698] hover:bg-[#01998c] border-none rounded-3xl px-6 py-2 text-white">
-                            Login
-                        </button>
-                    </Link>
-                )}
-
-                <div className="dropdown dropdown-end">
+            <div className="navbar-end gap-4">
+                <label className="swap swap-rotate"></label>
+                <div className="dropdown dropdown-end z-50">
                     <div
-                        tabIndex={0}
-                        role="button"
-                        className="btn btn-ghost lg:hidden"
+                        tabIndex={1}
+                        className="tooltip tooltip-bottom"
+                        data-tip={user?.displayName}
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            {" "}
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M4 6h16M4 12h8m-8 6h16"
-                            />{" "}
-                        </svg>
+                        {user?.photoURL ? (
+                            <img
+                                src={user?.photoURL}
+                                className="w-12 h-12 bg-cover rounded-full"
+                                alt="User"
+                            />
+                        ) : (
+                            <button className="btn btn-square btn-ghost md:hidden">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    className="inline-block h-5 w-5 stroke-current"
+                                >
+                                    {" "}
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                    ></path>{" "}
+                                </svg>
+                            </button>
+                        )}
                     </div>
                     <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                        tabIndex={1}
+                        className="menu menu-md dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                     >
-                        <li>
-                            <NavLink>Home</NavLink>
+                        <li className="">
+                            <NavLink to="/">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink>All Classes</NavLink>
+                            <NavLink to="/AddLostAndFoundItems">
+                                All Classes
+                            </NavLink>
                         </li>
                         <li>
-                            <NavLink>Teach on EduManage</NavLink>
+                            <NavLink to="/AllLostAndFoundItems">
+                                Teach on EduManage
+                            </NavLink>
                         </li>
+
+                        {user && (
+                            <li>
+                                <NavLink to="/dashboard">Dashboard</NavLink>
+                            </li>
+                        )}
+
+                        {user ? (
+                            <li onClick={signOut}>
+                                <Link>Logout</Link>
+                            </li>
+                        ) : (
+                            <li>
+                                <Link to="/login">Login</Link>
+                            </li>
+                        )}
                     </ul>
                 </div>
+
+                {user ? (
+                    <></>
+                ) : (
+                    <Link to="/login">
+                        <button className="btn btn-primary ">Login</button>
+                    </Link>
+                )}
             </div>
         </div>
     );

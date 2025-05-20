@@ -10,7 +10,7 @@ const FeaturedCourses = () => {
     const { data: courseData, isLoading ,error} = useQuery({
         queryKey: ["courseData"],
         queryFn: async () => {
-            const { data } = await axios.get("/cardData.json");
+            const { data } = await axios.get(`${import.meta.env.VITE_API_KEY}/class`);
             return data;
         },
     });

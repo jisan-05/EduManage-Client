@@ -11,18 +11,18 @@ import {
 import { auth } from "../Firebase/Firebase.config";
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState();
-    const [loading, setLoading] = useState();
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
-    const signIn = (email,password) =>{
-      setLoading(true)
-      return signInWithEmailAndPassword(email,password)
-    }
+    const signIn = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    };
 
     const googleProvider = new GoogleAuthProvider();
     const signInWithGoogle = () => {
@@ -30,25 +30,22 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider);
     };
 
-    const logOut = () =>{
-      setLoading(true)
-      return signOut(auth)
-    }
+    const logOut = () => {
+        setLoading(true);
+        return signOut(auth);
+    };
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log("Current User --> ", currentUser);
-            if (currentUser?.email) {
-                setUser(currentUser);
-            }else{
-              setUser(null)
-            }
+            setUser(currentUser || null);
             setLoading(false);
         });
+
         return () => {
-            return unSubscribe();
+            unSubscribe(); // Correct cleanup
         };
-    },[]);
+    }, []);
 
     const authInfo = {
         user,
@@ -57,10 +54,12 @@ const AuthProvider = ({ children }) => {
         createUser,
         signIn,
         logOut
-      };
+    };
 
     return (
-        <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={authInfo}>
+            {children}
+        </AuthContext.Provider>
     );
 };
 

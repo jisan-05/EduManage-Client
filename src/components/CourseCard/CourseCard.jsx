@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CourseDetails from "../CourseDetails/CourseDetails";
 
 const CourseCard = ({ data }) => {
-    const { image, price, name, title, description, category, _id } =
+    const { image, price, name, title, description, _id } =
         data || {};
     return (
         <div>
@@ -19,9 +19,7 @@ const CourseCard = ({ data }) => {
                     </div>
                 </figure>
                 <div className="pt-8 space-y-3">
-                    <p className="px-4 py-1 text-sm border border-sky-300 rounded-4xl w-fit font-semibold bg-[#e3f4f3]">
-                        {category}
-                    </p>
+                   
                     <h2 className="card-title">{title}</h2>
                     <p>{description}</p>
                     <div className="divider"></div>

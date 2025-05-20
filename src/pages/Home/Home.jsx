@@ -11,11 +11,11 @@ const Home = () => {
             <div className="max-w-[93%] md:max-w-[94%] lg:max-w-[92%] 2xl:max-w-[1600px] mx-auto flex items-center">
                 <AboutUs></AboutUs>
             </div>
-            {/* <div>
+            <div className="py-14">
                 <div className="max-w-[93%] md:max-w-[94%] lg:max-w-[92%] 2xl:max-w-[1600px] mx-auto ">
                     <Trusted></Trusted>
                 </div>
-            </div> */}
+            </div>
             <div className="bg-[#f5f7f8]">
             <div className="max-w-[93%] md:max-w-[94%] lg:max-w-[92%] 2xl:max-w-[1600px] mx-auto ">
                 <FeaturedCourses></FeaturedCourses>

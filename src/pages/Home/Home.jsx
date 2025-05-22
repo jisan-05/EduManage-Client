@@ -3,6 +3,8 @@ import Banner from "../../components/Banner/Banner";
 import AboutUs from "../../components/AboutUs/AboutUs";
 import Trusted from "../../components/Trusted/Trusted";
 import FeaturedCourses from "../../components/FeaturedCourses/FeaturedCourses";
+import StatsSection from "./StatsSection/StatsSection";
+import BecomeTeacher from "./BecomeTeacher/BecomeTeacher";
 
 const Home = () => {
     return (
@@ -20,6 +22,12 @@ const Home = () => {
             <div className="max-w-[93%] md:max-w-[94%] lg:max-w-[92%] 2xl:max-w-[1600px] mx-auto ">
                 <FeaturedCourses></FeaturedCourses>
             </div>
+            </div>
+            <div>
+                <StatsSection></StatsSection>
+            </div>
+            <div>
+                <BecomeTeacher></BecomeTeacher>
             </div>
         </div>
     );

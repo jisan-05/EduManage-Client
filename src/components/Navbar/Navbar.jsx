@@ -19,22 +19,22 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
-                <Link to="/" className="btn btn-ghost text-xl">
-                    Lost and Found
+                <Link to="/" className="btn btn-ghost text-2xl">
+                    EduManager
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li className="">
+                    <li className="text-lg font-medium">
                         <NavLink to="/">Home</NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/AddLostAndFoundItems">
+                    <li className="text-lg font-medium">
+                        <NavLink to="/classes">
                             All Classes
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/AllLostAndFoundItems">
+                    <li className="text-lg font-medium">
+                        <NavLink to="/techOn">
                             Teach on EduManage
                         </NavLink>
                     </li>
@@ -81,12 +81,12 @@ const Navbar = () => {
                             <NavLink to="/">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/AddLostAndFoundItems">
+                            <NavLink to="/classes">
                                 All Classes
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/AllLostAndFoundItems">
+                            <NavLink to="/techOn">
                                 Teach on EduManage
                             </NavLink>
                         </li>

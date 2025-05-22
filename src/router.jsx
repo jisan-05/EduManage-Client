@@ -5,6 +5,9 @@ import CourseDetails from "./components/CourseDetails/CourseDetails";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import AddClass from "./components/AddClass/AddClass";
+import AddFeedBack from "./components/AddFeedback/AddFeedBack";
+import Classes from "./pages/Classes/Classes";
+import TechOn from "./pages/TechOn/TechOn";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +33,18 @@ const router = createBrowserRouter([
             {
                 path:'/addClass',
                 element:<AddClass></AddClass>
+            },
+            {
+                path:"/addFeedBack",
+                element:<AddFeedBack></AddFeedBack>
+            },
+            {
+                path:"/classes",
+                element:<Classes></Classes>
+            },
+            {
+                path:"/techOn",
+                element:<TechOn></TechOn>
             }
         ],
     },

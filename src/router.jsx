@@ -8,6 +8,7 @@ import AddClass from "./components/AddClass/AddClass";
 import AddFeedBack from "./components/AddFeedback/AddFeedBack";
 import Classes from "./pages/Classes/Classes";
 import TechOn from "./pages/TechOn/TechOn";
+import Class from "./components/Class/Class";
 
 const router = createBrowserRouter([
     {
@@ -45,7 +46,8 @@ const router = createBrowserRouter([
             {
                 path:"/techOn",
                 element:<TechOn></TechOn>
-            }
+            },
+           
         ],
     },
   

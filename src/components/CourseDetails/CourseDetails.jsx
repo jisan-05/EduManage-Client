@@ -10,18 +10,21 @@ const CourseDetails = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("/cardData.json")
-            .then((res) => res.json())
-            .then((data) => {
-                const selected = data.find((item) => item._id === Number(id));
-                setCourse(selected);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("Error fetching course data:", error);
-                setLoading(false);
-            });
-            }, [id]);
+    const fetchCourse = async () => {
+        try {
+            const res = await axios.get(`${import.meta.env.VITE_API_KEY}/class/${id}`);
+            setCourse(res.data);
+        } catch (error) {
+            console.error("Failed to fetch course", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    fetchCourse();
+}, [id]);
+
+        console.log(course)
 
     if (loading) return <LoadingSpinner></LoadingSpinner>;
     if (!course) return <p>Course not found.</p>;
@@ -29,7 +32,6 @@ const CourseDetails = () => {
 
     return (
         <div className="p-5">
-            
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 <div className="flex flex-col md:flex-row bg-base-100 shadow-2xl rounded-3xl overflow-hidden">
                     <div className="w-full md:w-1/2">
@@ -56,7 +58,7 @@ const CourseDetails = () => {
                                 <span className="font-semibold">
                                     Instructor:
                                 </span>{" "}
-                                {course.teacher}
+                                {course.name}
                             </p>
                             <p>
                                 <span className="font-semibold">Duration:</span>{" "}
@@ -80,9 +82,8 @@ const CourseDetails = () => {
                                     ${course.price}
                                 </span>
                             </p>
+                            <button className="btn btn-primary">Pay</button>
                         </div>
-
-                        
                     </div>
                 </div>
             </div>

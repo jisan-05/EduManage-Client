@@ -1,66 +1,95 @@
-import React, { useEffect, useState } from "react";
-import AuthContext from "./AuthContext";
+import { useEffect, useState } from "react";
 import {
-    createUserWithEmailAndPassword,
-    GoogleAuthProvider,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    signInWithPopup,
-    signOut,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
 } from "firebase/auth";
-import { auth } from "../Firebase/Firebase.config";
+
+import { auth } from "./../firebase/firebase.config";
+import AuthContext from "./AuthContext";
+import axios from "axios";
+
+const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    const createUser = (email, password) => {
-        setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
+  const createUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const signIn = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const signInWithGoogle = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  const logOut = async () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+
+  const updateUserProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
+
+  // onAuthStateChange
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log("CurrentUser-->", currentUser);
+      if (currentUser?.email) {
+        setUser(currentUser);
+
+        // await axios.post(
+        //   `${import.meta.env.VITE_API_URL}/jwt`,
+        //   {
+        //     email: currentUser?.email,
+        //   },
+        //   {
+        //     withCredentials: true,
+        //   }
+        // );
+      } else {
+        setUser(currentUser);
+        // await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
+        //   withCredentials: true,
+        // });
+      }
+      setLoading(false);
+    });
+    return () => {
+      return unsubscribe();
     };
+  }, []);
 
-    const signIn = (email, password) => {
-        setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password);
-    };
+  const authInfo = {
+    user,
+    setUser,
+  loading,
+    setLoading,
+    createUser,
+    signIn,
+    signInWithGoogle,
+    logOut,
+    updateUserProfile,
+  };
 
-    const googleProvider = new GoogleAuthProvider();
-    const signInWithGoogle = () => {
-        setLoading(true);
-        return signInWithPopup(auth, googleProvider);
-    };
-
-    const logOut = () => {
-        setLoading(true);
-        return signOut(auth);
-    };
-
-    useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            console.log("Current User --> ", currentUser);
-            setUser(currentUser || null);
-            setLoading(false);
-        });
-
-        return () => {
-            unSubscribe(); // Correct cleanup
-        };
-    }, []);
-
-    const authInfo = {
-        user,
-        loading,
-        signInWithGoogle,
-        createUser,
-        signIn,
-        logOut
-    };
-
-    return (
-        <AuthContext.Provider value={authInfo}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

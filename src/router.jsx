@@ -9,6 +9,10 @@ import AddFeedBack from "./components/AddFeedback/AddFeedBack";
 import Classes from "./pages/Classes/Classes";
 import TechOn from "./pages/TechOn/TechOn";
 import Class from "./components/Class/Class";
+import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
+import AdminStatistics from "./pages/Dashboard/AdminStatistics/AdminStatistics";
+import User from "./pages/Dashboard/User/User";
+
 
 const router = createBrowserRouter([
     {
@@ -50,6 +54,20 @@ const router = createBrowserRouter([
            
         ],
     },
+    {
+        path:"/dashboard",
+        element:<Dashboard></Dashboard>,
+        children:[
+            {
+                index:true,
+                element:<AdminStatistics></AdminStatistics>
+            },
+            {
+                path:'user',
+                element:<User></User>
+            }
+        ]
+    }
   
 ]);
 

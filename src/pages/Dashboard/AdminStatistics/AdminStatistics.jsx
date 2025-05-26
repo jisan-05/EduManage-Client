@@ -1,3 +1,5 @@
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React from 'react';
 import {
     FaUsers,
@@ -8,6 +10,18 @@ import {
     FaAngleRight,
 } from "react-icons/fa";
 const AdminStatistics = () => {
+
+    const {data:users=[],isLoading} = useQuery({
+        queryKey:["users"],
+        queryFn:async()=>{
+            const {data} = await axios.get(`${import.meta.env.VITE_API_KEY}/user`)
+            return data;
+        }
+    })
+    if(isLoading){
+        return <p className='text-2xl'>Loading...</p>
+    }
+
   return (
     <div>
       <h3 className="text-3xl font-semibold mb-4">Welcome, Admin</h3>
@@ -16,7 +30,7 @@ const AdminStatistics = () => {
                     {/* Cards */}
                     <DashboardCard
                         title="Total Users"
-                        value="128"
+                        value={users.length}
                         color="text-blue-600"
                     />
                     <DashboardCard

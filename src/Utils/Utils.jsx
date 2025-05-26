@@ -37,7 +37,7 @@ export const cloudinaryUploadLow = async (imageFile) => {
 // Save user in DB 
 export const saveUser = async(user)=>{
   await axios.post(`${import.meta.env.VITE_API_KEY}/users/${user?.email}`,{
-    name:user?.name,
+    name:user?.displayName,
 
     image:user?.photoURL,
     email:user?.email,

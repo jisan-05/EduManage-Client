@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import {
     FaUsers,
     FaBook,
@@ -54,6 +54,7 @@ const Dashboard = () => {
                         icon={<FaChalkboardTeacher />}
                         label="Teacher Request"
                         collapsed={isCollapsed}
+                        to="teacherRequest"
                     />
                     <NavItem
                         icon={<FaUser />}
@@ -63,8 +64,9 @@ const Dashboard = () => {
                     />
                     <NavItem
                         icon={<FaChartBar />}
-                        label="Reports"
+                        label="All Classes"
                         collapsed={isCollapsed}
+                        to=""
                     />
                 </nav>
             </aside>
@@ -78,12 +80,24 @@ const Dashboard = () => {
 };
 
 // Reusable NavItem component
-const NavItem = ({ icon, label, collapsed,to="#" }) => (
-    <Link to={to} className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition">
-        <span className="text-lg">{icon}</span>
-        {!collapsed && <span className="text-sm font-medium">{label}</span>}
-    </Link>
-);
+const NavItem = ({ icon, label, collapsed, to = "#" }) => {
+    const location = useLocation();
+    const isActive = location.pathname === to || location.pathname === `/dashboard/${to}`;
+
+    return (
+        <Link
+            to={to}
+            className={`flex items-center gap-3 p-2 rounded transition ${
+                isActive
+                    ? "bg-blue-100 text-blue-600 font-semibold"
+                    : "text-gray-700 hover:text-blue-600 hover:bg-gray-100"
+            }`}
+        >
+            <span className="text-lg">{icon}</span>
+            {!collapsed && <span className="text-sm font-medium">{label}</span>}
+        </Link>
+    );
+};
 
 
 

@@ -4,7 +4,7 @@ import axios from "axios";
 
 const User = () => {
     const { data: users = [], isLoading } = useQuery({
-        queryKey: ["user"],
+        queryKey: ["users"],
         queryFn: async () => {
             const { data } = await axios.get(
                 `${import.meta.env.VITE_API_KEY}/user`
@@ -29,44 +29,40 @@ const User = () => {
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Email</th>
+                            <th>Role</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {users.map((user) => (
-                            <tr>
-                                <th>1</th>
+                        {users.map((user,idx) => (
+                            <tr keu={idx}>
+                                <th>{idx+1}</th>
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle h-12 w-12">
                                                 <img
-                                                    src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                                    src={user?.image}
                                                     alt="Avatar Tailwind CSS Component"
                                                 />
                                             </div>
                                         </div>
                                         <div>
                                             <div className="font-bold">
-                                                Hart Hagerty
+                                                {user.name}
                                             </div>
-                                            <div className="text-sm opacity-50">
-                                                United States
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    Zemlak, Daniel and Leannon
-                                    <br />
-                                    <span className="badge badge-ghost badge-sm">
-                                        Desktop Support Technician
-                                    </span>
+                                    <div>
+                                        {user.email}
+                                    </div>
                                 </td>
-                                <td>Purple</td>
+                                <td>{user.role}</td>
                                 <th>
                                     <button className="btn btn-ghost btn-xs">
                                         details

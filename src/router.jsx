@@ -12,6 +12,7 @@ import Class from "./components/Class/Class";
 import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 import AdminStatistics from "./pages/Dashboard/AdminStatistics/AdminStatistics";
 import User from "./pages/Dashboard/User/User";
+import TeacherRequest from "./pages/Dashboard/TeacherRequest/TeacherRequest";
 
 
 const router = createBrowserRouter([
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path:'user',
                 element:<User></User>
+            },
+            {
+                path:'teacherRequest',
+                element:<TeacherRequest></TeacherRequest>
             }
         ]
     }

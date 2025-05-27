@@ -10,10 +10,12 @@ import {
     FaUser,
     FaChalkboardTeacher,
 } from "react-icons/fa";
+import useRole from "../../../hook/useRole";
 
 
 const Dashboard = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const [role,isLoading] = useRole()
 
     return (
         <div className="min-h-screen flex bg-gray-100">
@@ -41,7 +43,7 @@ const Dashboard = () => {
                 </h2>
 
                 {/* Admin Menu  */}
-                {/* Navigation */}
+                {role === "admin" && 
                 <nav className="space-y-4">
                     <NavItem
                         icon={<FaHome />}
@@ -57,7 +59,7 @@ const Dashboard = () => {
                         to="teacherRequest"
                     />
                     <NavItem
-                        icon={<FaUser />}
+                        icon={<FaUsers />}
                         label="User"
                         collapsed={isCollapsed}
                         to="user"
@@ -68,7 +70,13 @@ const Dashboard = () => {
                         collapsed={isCollapsed}
                         to=""
                     />
-                </nav>
+                    <NavItem
+                        icon={<FaUser/>}
+                        label="Profile"
+                        collapsed={isCollapsed}
+                        to="profile"
+                    />
+                </nav>}
             </aside>
 
             {/* Main Content */}

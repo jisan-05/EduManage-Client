@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 import AdminStatistics from "./pages/Dashboard/AdminStatistics/AdminStatistics";
 import User from "./pages/Dashboard/User/User";
 import TeacherRequest from "./pages/Dashboard/TeacherRequest/TeacherRequest";
+import Profile from "./Shared/Profile";
 
 
 const router = createBrowserRouter([
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             {
                 path:'teacherRequest',
                 element:<TeacherRequest></TeacherRequest>
+            },
+            {
+                path:'profile',
+                element:<Profile></Profile>
             }
         ]
     }

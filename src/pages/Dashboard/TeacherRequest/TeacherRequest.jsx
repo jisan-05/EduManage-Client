@@ -17,11 +17,14 @@ const TeacherRequest = () => {
         },
     });
 
-    const handleStatusUpdate = async (id, status) => {
+    const handleStatusUpdate = async (id,email, status) => {
         const { data } = await axios.patch(
             `${import.meta.env.VITE_API_KEY}/teacher-status/${id}`,
             { status: status }
         );
+        if(status === "accepted"){
+            const {data} = await axios.patch(`${import.meta.env.VITE_API_KEY}/updateRole/${email}`,{role:"teacher"})
+        }
         console.log(data);
         refetch();
     };
@@ -69,7 +72,7 @@ const TeacherRequest = () => {
                             <td className="p-2 space-x-2">
                                 <button
                                     onClick={() =>
-                                        handleStatusUpdate(req._id, "accepted")
+                                        handleStatusUpdate(req._id,req.email, "accepted")
                                     }
                                     className={`px-3 py-1 ${
                                         req.status === "accepted"

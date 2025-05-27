@@ -37,7 +37,7 @@ const User = () => {
                     <tbody>
                         {/* row 1 */}
                         {users.map((user,idx) => (
-                            <tr keu={idx}>
+                            <tr key={idx}>
                                 <th>{idx+1}</th>
                                 <td>
                                     <div className="flex items-center gap-3">

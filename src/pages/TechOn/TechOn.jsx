@@ -54,6 +54,7 @@ const TeachOn = () => {
           <input
             type="text"
             name="image"
+            defaultValue={user?.photoURL }
             placeholder="Image URL"
             className="w-full border rounded-md p-2 focus:outline-none focus:ring focus:border-blue-400"
             required

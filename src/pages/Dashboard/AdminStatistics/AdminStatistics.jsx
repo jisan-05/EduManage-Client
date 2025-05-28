@@ -9,9 +9,11 @@ import {
     FaAngleLeft,
     FaAngleRight,
 } from "react-icons/fa";
+import useRole from '../../../hook/useRole';
 const AdminStatistics = () => {
+    const [role,isLoading] =useRole()
 
-    const {data:users=[],isLoading} = useQuery({
+    const {data:users=[],} = useQuery({
         queryKey:["users"],
         queryFn:async()=>{
             const {data} = await axios.get(`${import.meta.env.VITE_API_KEY}/user`)
@@ -21,10 +23,13 @@ const AdminStatistics = () => {
     if(isLoading){
         return <p className='text-2xl'>Loading...</p>
     }
+    if(role !== "admin"){
+        return <p></p>
+    }
 
   return (
     <div>
-      <h3 className="text-3xl font-semibold mb-4">Welcome, Admin</h3>
+      <h3 className="text-3xl font-semibold mb-4">Welcome, in Dashboard</h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                     {/* Cards */}

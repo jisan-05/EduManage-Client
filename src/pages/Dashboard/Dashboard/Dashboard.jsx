@@ -39,12 +39,73 @@ const Dashboard = () => {
                         isCollapsed ? "opacity-0" : "opacity-100"
                     }`}
                 >
-                    Admin Panel
+                    Dashboard
                 </h2>
 
+                {/* Student Menu  */}
+                {role === "student" && 
+                <nav className="space-y-4">
+                    <NavItem
+                        icon={<FaHome />}
+                        label="Go Home"
+                        collapsed={isCollapsed}
+                        to="/"
+                        
+                    />
+                    <NavItem
+                        icon={<FaChalkboardTeacher />}
+                        label="My enroll class"
+                        collapsed={isCollapsed}
+                        to="teacherRequest"
+                    />
+                    
+                    <NavItem
+                        icon={<FaUser/>}
+                        label="Profile"
+                        collapsed={isCollapsed}
+                        to="profile"
+                    />
+                </nav>}
+                {/* Admin Menu  */}
+                {role === "teacher" && 
+                <nav className="space-y-4">
+                    <NavItem
+                        icon={<FaHome />}
+                        label="Go Home"
+                        collapsed={isCollapsed}
+                        to="/"
+                        
+                    />
+                    <NavItem
+                        icon={<FaChalkboardTeacher />}
+                        label="Add Class"
+                        collapsed={isCollapsed}
+                        to="teacherRequest"
+                    />
+                    <NavItem
+                        icon={<FaUsers />}
+                        label="My class"
+                        collapsed={isCollapsed}
+                        to="user"
+                    />
+                    
+                    <NavItem
+                        icon={<FaUser/>}
+                        label="Profile"
+                        collapsed={isCollapsed}
+                        to="profile"
+                    />
+                </nav>}
                 {/* Admin Menu  */}
                 {role === "admin" && 
                 <nav className="space-y-4">
+                    <NavItem
+                        icon={<FaHome />}
+                        label="Go Back"
+                        collapsed={isCollapsed}
+                        to="/"
+                        
+                    />
                     <NavItem
                         icon={<FaHome />}
                         label="Dashboard Home"

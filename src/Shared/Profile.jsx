@@ -17,6 +17,7 @@ const Profile = () => {
     },
   });
 
+
   if (isLoading) return <div className="text-center mt-10">Loading...</div>;
 
   return (
@@ -29,7 +30,7 @@ const Profile = () => {
             className="w-32 h-32 rounded-full object-cover shadow-md mb-4"
           />
           <h2 className="text-2xl font-bold text-gray-800">{userData.name}</h2>
-          <p className=" font-semibold text-gray-500 mt-1 capitalize">{userData.role}</p>
+          <p className=" font-semibold text-gray-500 mt-1 capitalize">Role : {userData.role}</p>
         </div>
 
         <div className="mt-6 space-y-3 text-sm text-gray-700">

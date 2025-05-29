@@ -1,6 +1,7 @@
 import React from 'react';
 import useAuth from '../../hook/useAuth';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const TeachOn = () => {
   const { user } = useAuth();
@@ -28,6 +29,7 @@ const TeachOn = () => {
     try {
       const { data } = await axios.post(`${import.meta.env.VITE_API_KEY}/techOn`, formData);
       // Show success toast/notification here
+      toast.success("Application submit Successful")
       console.log(data);
     } catch (error) {
       // Show error toast/notification here

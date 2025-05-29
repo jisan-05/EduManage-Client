@@ -14,7 +14,12 @@ import AdminStatistics from "./pages/Dashboard/AdminStatistics/AdminStatistics";
 import User from "./pages/Dashboard/User/User";
 import TeacherRequest from "./pages/Dashboard/TeacherRequest/TeacherRequest";
 import Profile from "./Shared/Profile";
-
+import MyClass from "./pages/Dashboard/MyClass/MyClass";
+import MyClassDetails from "./components/MyClassDetails/MyClassDetails";
+import UpdateClass from "./components/UpdateClass/UpdataClass";
+import MyEnrollClass from "./pages/Dashboard/MyEnrollClass/MyEnrollClass";
+import MyEnrollClassDetails from "./components/MyEnrollClassDetails/MyEnrollClassDetails";
+import AllClasses from "./components/AllClasses/AllClasses";
 
 const router = createBrowserRouter([
     {
@@ -30,55 +35,78 @@ const router = createBrowserRouter([
                 element: <CourseDetails></CourseDetails>,
             },
             {
-                path:'/login',
-                element:<Login></Login>
+                path: "/login",
+                element: <Login></Login>,
             },
             {
-                path:"/register",
-                element:<Register></Register>
+                path: "/register",
+                element: <Register></Register>,
+            },
+
+            {
+                path: "/addFeedBack",
+                element: <AddFeedBack></AddFeedBack>,
             },
             {
-                path:'/addClass',
-                element:<AddClass></AddClass>
+                path: "/classes",
+                element: <Classes></Classes>,
             },
             {
-                path:"/addFeedBack",
-                element:<AddFeedBack></AddFeedBack>
+                path: "/techOn",
+                element: <TechOn></TechOn>,
             },
-            {
-                path:"/classes",
-                element:<Classes></Classes>
-            },
-            {
-                path:"/techOn",
-                element:<TechOn></TechOn>
-            },
-           
         ],
     },
     {
-        path:"/dashboard",
-        element:<Dashboard></Dashboard>,
-        children:[
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
             {
-                index:true,
-                element:<AdminStatistics></AdminStatistics>
+                index: true,
+                element: <AdminStatistics></AdminStatistics>,
             },
             {
-                path:'user',
-                element:<User></User>
+                path: "user",
+                element: <User></User>,
             },
             {
-                path:'teacherRequest',
-                element:<TeacherRequest></TeacherRequest>
+                path: "teacherRequest",
+                element: <TeacherRequest></TeacherRequest>,
             },
             {
-                path:'profile',
-                element:<Profile></Profile>
-            }
-        ]
-    }
-  
+                path: "profile",
+                element: <Profile></Profile>,
+            },
+            {
+                path: "addClass",
+                element: <AddClass></AddClass>,
+            },
+            {
+                path: "myClass",
+                element: <MyClass></MyClass>
+            },
+            {
+                path: "updateClass/:id",
+                element: <UpdateClass></UpdateClass>
+            },
+            {
+                path: "myClassDetails/:id",
+                element: <MyClassDetails></MyClassDetails>
+            },
+            {
+                path: "myEnrollClass",
+                element: <MyEnrollClass></MyEnrollClass>
+            },
+            {
+                path: "myEnrollClassDetails/:id",
+                element: <MyEnrollClassDetails></MyEnrollClassDetails>
+            },
+            {
+                path: "AllClasses",
+                element: <AllClasses></AllClasses>
+            },
+        ],
+    },
 ]);
 
 export default router;

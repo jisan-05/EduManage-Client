@@ -1,7 +1,33 @@
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React from 'react';
 
 
 const StatsSection = () => {
+
+  const {data:users=[],} = useQuery({
+        queryKey:["users"],
+        queryFn:async()=>{
+            const {data} = await axios.get(`${import.meta.env.VITE_API_KEY}/user`)
+            return data;
+        }
+    })
+    
+  const {data:classes=[],} = useQuery({
+        queryKey:["class"],
+        queryFn:async()=>{
+            const {data} = await axios.get(`${import.meta.env.VITE_API_KEY}/acceptedClass`)
+            return data;
+        }
+    })
+  const {data:student=[],} = useQuery({
+        queryKey:["student"],
+        queryFn:async()=>{
+            const {data} = await axios.get(`${import.meta.env.VITE_API_KEY}/enrollments`)
+            return data;
+        }
+    })
+    
  
 
  
@@ -14,13 +40,13 @@ const StatsSection = () => {
           <h2 className="text-3xl font-bold mb-6">Website Stats</h2>
           <div className="space-y-4 text-lg font-semibold ">
             <div>
-              <span className="text-4xl">1,250</span> <span>Users</span>
+              <span className="text-4xl">{users.length}</span> <span>Users</span>
             </div>
             <div>
-              <span className="text-4xl">85</span> <span>Classes</span>
+              <span className="text-4xl">{classes.length}</span> <span>Classes</span>
             </div>
             <div>
-              <span className="text-4xl">3,200</span> <span>Student Enrollments</span>
+              <span className="text-4xl">{student.length}</span> <span>Student Enrollments</span>
             </div>
           </div>
         </div>

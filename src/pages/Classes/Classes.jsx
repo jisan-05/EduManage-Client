@@ -9,7 +9,7 @@ const Classes = () => {
     const {data:classes=[],isLoading,isError,error} = useQuery({
       queryKey:["classes"],
       queryFn:async()=>{
-        const {data} = await axios.get(`${import.meta.env.VITE_API_KEY}/class`)
+        const {data} = await axios.get(`${import.meta.env.VITE_API_KEY}/acceptedClass`)
         return data;
       },
       

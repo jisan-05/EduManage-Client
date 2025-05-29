@@ -39,8 +39,8 @@ const Profile = () => {
             <span>{userData.email}</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="font-medium">Phone:</span>
-            <span>{userData.phone || 'N/A'}</span>
+            {/* <span className="font-medium">Phone:</span>
+            <span>{userData.phone || 'N/A'}</span> */}
           </div>
         </div>
 

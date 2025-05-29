@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation } from "react-router-dom";
 import {
     FaUsers,
     FaBook,
@@ -12,10 +12,9 @@ import {
 } from "react-icons/fa";
 import useRole from "../../../hook/useRole";
 
-
 const Dashboard = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [role,isLoading] = useRole()
+    const [role, isLoading] = useRole();
 
     return (
         <div className="min-h-screen flex bg-gray-100">
@@ -23,15 +22,17 @@ const Dashboard = () => {
             <aside
                 className={`${
                     isCollapsed ? "w-20" : "w-64"
-                } bg-white shadow-md p-5 transition-all duration-300 relative`}
+                } bg-white shadow-md p-5 transition-all duration-300 relative overflow-visible`}
             >
                 {/* Collapse Button */}
-                <button
-                    onClick={() => setIsCollapsed(!isCollapsed)}
-                    className="absolute -right-3 top-6 bg-blue-500 text-white rounded-full p-1 shadow hover:bg-blue-600 transition"
-                >
-                    {isCollapsed ? <FaAngleRight /> : <FaAngleLeft />}
-                </button>
+                <div className="absolute top-6 -right-4 z-50">
+                    <button
+                        onClick={() => setIsCollapsed(!isCollapsed)}
+                        className="bg-blue-500 text-white rounded-full p-1 text-2xl shadow hover:bg-blue-600 transition"
+                    >
+                        {isCollapsed ? <FaAngleRight /> : <FaAngleLeft />}
+                    </button>
+                </div>
 
                 {/* Logo or Title */}
                 <h2
@@ -43,101 +44,100 @@ const Dashboard = () => {
                 </h2>
 
                 {/* Student Menu  */}
-                {role === "student" && 
-                <nav className="space-y-4">
-                    <NavItem
-                        icon={<FaHome />}
-                        label="Go Home"
-                        collapsed={isCollapsed}
-                        to="/"
-                        
-                    />
-                    <NavItem
-                        icon={<FaChalkboardTeacher />}
-                        label="My enroll class"
-                        collapsed={isCollapsed}
-                        to="teacherRequest"
-                    />
-                    
-                    <NavItem
-                        icon={<FaUser/>}
-                        label="Profile"
-                        collapsed={isCollapsed}
-                        to="profile"
-                    />
-                </nav>}
+                {role === "student" && (
+                    <nav className="space-y-4">
+                        <NavItem
+                            icon={<FaHome />}
+                            label="Go Home"
+                            collapsed={isCollapsed}
+                            to="/"
+                        />
+                        <NavItem
+                            icon={<FaChalkboardTeacher />}
+                            label="My enroll class"
+                            collapsed={isCollapsed}
+                            to="myEnrollClass"
+                        />
+
+                        <NavItem
+                            icon={<FaUser />}
+                            label="Profile"
+                            collapsed={isCollapsed}
+                            to="profile"
+                        />
+                    </nav>
+                )}
+                {/* Teacher Menu  */}
+                {role === "teacher" && (
+                    <nav className="space-y-4">
+                        <NavItem
+                            icon={<FaHome />}
+                            label="Go Home"
+                            collapsed={isCollapsed}
+                            to="/"
+                        />
+                        <NavItem
+                            icon={<FaChalkboardTeacher />}
+                            label="Add Class"
+                            collapsed={isCollapsed}
+                            to="addClass"
+                        />
+                        <NavItem
+                            icon={<FaUsers />}
+                            label="My class"
+                            collapsed={isCollapsed}
+                            to="myClass"
+                        />
+
+                        <NavItem
+                            icon={<FaUser />}
+                            label="Profile"
+                            collapsed={isCollapsed}
+                            to="profile"
+                        />
+                    </nav>
+                )}
                 {/* Admin Menu  */}
-                {role === "teacher" && 
-                <nav className="space-y-4">
-                    <NavItem
-                        icon={<FaHome />}
-                        label="Go Home"
-                        collapsed={isCollapsed}
-                        to="/"
-                        
-                    />
-                    <NavItem
-                        icon={<FaChalkboardTeacher />}
-                        label="Add Class"
-                        collapsed={isCollapsed}
-                        to="teacherRequest"
-                    />
-                    <NavItem
-                        icon={<FaUsers />}
-                        label="My class"
-                        collapsed={isCollapsed}
-                        to="user"
-                    />
-                    
-                    <NavItem
-                        icon={<FaUser/>}
-                        label="Profile"
-                        collapsed={isCollapsed}
-                        to="profile"
-                    />
-                </nav>}
-                {/* Admin Menu  */}
-                {role === "admin" && 
-                <nav className="space-y-4">
-                    <NavItem
-                        icon={<FaHome />}
-                        label="Go Back"
-                        collapsed={isCollapsed}
-                        to="/"
-                        
-                    />
-                    <NavItem
-                        icon={<FaHome />}
-                        label="Dashboard Home"
-                        collapsed={isCollapsed}
-                        to="/dashboard"
-                        
-                    />
-                    <NavItem
-                        icon={<FaChalkboardTeacher />}
-                        label="Teacher Request"
-                        collapsed={isCollapsed}
-                        to="teacherRequest"
-                    />
-                    <NavItem
-                        icon={<FaUsers />}
-                        label="User"
-                        collapsed={isCollapsed}
-                        to="user"
-                    />
-                    <NavItem
-                        icon={<FaChartBar />}
-                        label="All Classes"
-                        collapsed={isCollapsed}
-                        to=""
-                    />
-                    <NavItem
-                        icon={<FaUser/>}
-                        label="Profile"
-                        collapsed={isCollapsed}
-                        to="profile"
-                    />
-                </nav>}
+                {role === "admin" && (
+                    <nav className="space-y-4">
+                        <NavItem
+                            icon={<FaHome />}
+                            label="Go Back"
+                            collapsed={isCollapsed}
+                            to="/"
+                        />
+                        <NavItem
+                            icon={<FaHome />}
+                            label="Dashboard Home"
+                            collapsed={isCollapsed}
+                            to="/dashboard"
+                        />
+                        <NavItem
+                            icon={<FaChalkboardTeacher />}
+                            label="Teacher Request"
+                            collapsed={isCollapsed}
+                            to="teacherRequest"
+                        />
+                        <NavItem
+                            icon={<FaUsers />}
+                            label="User"
+                            collapsed={isCollapsed}
+                            to="user"
+                        />
+                        <NavItem
+                            icon={<FaChartBar />}
+                            label="All Classes"
+                            collapsed={isCollapsed}
+                            to="allClasses"
+                        />
+                        <NavItem
+                            icon={<FaUser />}
+                            label="Profile"
+                            collapsed={isCollapsed}
+                            to="profile"
+                        />
+                    </nav>
+                )}
             </aside>
 
             {/* Main Content */}
@@ -151,7 +151,8 @@ const Dashboard = () => {
 // Reusable NavItem component
 const NavItem = ({ icon, label, collapsed, to = "#" }) => {
     const location = useLocation();
-    const isActive = location.pathname === to || location.pathname === `/dashboard/${to}`;
+    const isActive =
+        location.pathname === to || location.pathname === `/dashboard/${to}`;
 
     return (
         <Link
@@ -167,7 +168,5 @@ const NavItem = ({ icon, label, collapsed, to = "#" }) => {
         </Link>
     );
 };
-
-
 
 export default Dashboard;

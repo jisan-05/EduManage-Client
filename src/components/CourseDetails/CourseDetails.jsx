@@ -3,28 +3,65 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
+import useAuth from "../../hook/useAuth";
+import toast from "react-hot-toast";
 
 const CourseDetails = () => {
     const { id } = useParams();
     const [course, setCourse] = useState(null);
     const [loading, setLoading] = useState(true);
+    const { user } = useAuth(); // get current logged-in user
 
     useEffect(() => {
-    const fetchCourse = async () => {
-        try {
-            const res = await axios.get(`${import.meta.env.VITE_API_KEY}/class/${id}`);
-            setCourse(res.data);
-        } catch (error) {
-            console.error("Failed to fetch course", error);
-        } finally {
-            setLoading(false);
-        }
+        const fetchCourse = async () => {
+            try {
+                const res = await axios.get(
+                    `${import.meta.env.VITE_API_KEY}/class/${id}`
+                );
+                setCourse(res.data);
+            } catch (error) {
+                console.error("Failed to fetch course", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCourse();
+    }, [id]);
+
+    
+
+const handleEnroll = async () => {
+    if (!user) {
+        toast.error("You must be logged in to enroll");
+        return;
+    }
+
+    const enrollment = {
+        classId: course._id,
+        classTitle: course.title,
+        classImage: course.image,
+        studentEmail: user.email,
+        studentName: user.displayName,
+        instructorEmail: course.email,
+        enrolledAt: new Date()
     };
 
-    fetchCourse();
-}, [id]);
+    try {
+        const { data } = await axios.post(`${import.meta.env.VITE_API_KEY}/enroll`, enrollment);
+        if (data.insertedId || data.acknowledged) {
+            toast.success("Enrollment successful!");
+            // Optionally update local state to show new enrolled count
+            setCourse({ ...course, enrolled: (course.enrolled || 0) + 1 });
+        } else {
+            toast.error("Already enrolled or failed");
+        }
+    } catch (err) {
+        console.error(err);
+        toast.error("Enrollment failed");
+    }
+};
 
-        console.log(course)
 
     if (loading) return <LoadingSpinner></LoadingSpinner>;
     if (!course) return <p>Course not found.</p>;
@@ -82,7 +119,12 @@ const CourseDetails = () => {
                                     ${course.price}
                                 </span>
                             </p>
-                            <button className="btn btn-primary">Pay</button>
+                            <button
+                                onClick={handleEnroll}
+                                className="btn btn-primary"
+                            >
+                                Enroll Now
+                            </button>
                         </div>
                     </div>
                 </div>

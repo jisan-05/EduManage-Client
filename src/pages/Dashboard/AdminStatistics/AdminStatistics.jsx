@@ -20,6 +20,15 @@ const AdminStatistics = () => {
             return data;
         }
     })
+
+    const {data:classes=[],} = useQuery({
+        queryKey:["class"],
+        queryFn:async()=>{
+            const {data} = await axios.get(`${import.meta.env.VITE_API_KEY}/acceptedClass`)
+            return data;
+        }
+    })
+
     if(isLoading){
         return <p className='text-2xl'>Loading...</p>
     }
@@ -40,14 +49,10 @@ const AdminStatistics = () => {
                     />
                     <DashboardCard
                         title="Active Courses"
-                        value="34"
+                        value={classes.length}
                         color="text-green-600"
                     />
-                    <DashboardCard
-                        title="Pending Requests"
-                        value="7"
-                        color="text-red-500"
-                    />
+                    
                 </div>
     </div>
   );

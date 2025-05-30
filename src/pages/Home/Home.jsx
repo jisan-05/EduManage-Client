@@ -7,6 +7,7 @@ import StatsSection from "./StatsSection/StatsSection";
 import BecomeTeacher from "./BecomeTeacher/BecomeTeacher";
 import Feedback from "../../components/Feedback/Feedback";
 import OurEvents from "../../components/OurEvents/OurEvents";
+import StartJourney from "../../components/StartJourney/StartJourney";
 
 const Home = () => {
     return (
@@ -34,7 +35,10 @@ const Home = () => {
             <div>
                 <BecomeTeacher></BecomeTeacher>
             </div>
-            <div className="bg-[#f5f7f8] py-10">
+            <div>
+                <StartJourney></StartJourney>
+            </div>
+            <div className=" py-10">
                 <OurEvents></OurEvents>
             </div>
         </div>

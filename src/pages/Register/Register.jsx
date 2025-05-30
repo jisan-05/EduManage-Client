@@ -4,19 +4,24 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../../providers/AuthContext";
 import toast from "react-hot-toast";
 
-
 // import axios from "axios";
 
 import { cloudinaryUploadLow, saveUser } from "../../Utils/Utils";
+import { getAuth } from 'firebase/auth';
 
 const Register = () => {
-    const { createUser, signInWithGoogle, user, loading, updateUserProfile,setLoading } =
-        useContext(AuthContext);
+    const {
+        createUser,
+        signInWithGoogle,
+        user,
+        loading,
+        updateUserProfile,
+        setLoading,
+    } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const from = location?.state?.from?.pathname || "/";
-   
-    if (user) return <Navigate to={from} replace={true} />;
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,16 +35,18 @@ const Register = () => {
             const result = await createUser(email, password);
 
             await updateUserProfile(name, photoURL);
+
+
             await saveUser({ ...result?.user, displayName: name, photoURL });
 
-            navigate(from, { replace: true });
             toast.success("User created successfully!");
+            navigate(from, { replace: true });
         } catch (error) {
             console.error(error);
             toast.error(
                 error.message || "Something went wrong. Please try again."
             );
-            setLoading(false)
+            setLoading(false);
         }
     };
 

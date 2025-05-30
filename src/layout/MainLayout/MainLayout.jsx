@@ -4,12 +4,13 @@ import { Outlet } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import { useContext } from 'react';
 import AuthContext from '../../Providers/AuthContext';
+import LoadingSpinner from '../../Shared/LoadingSpinner';
 
 const MainLayout = () => {
   const {loading} = useContext(AuthContext)
 
   if(loading){
-    return <p className='text-3xl'>Loading...</p>
+    return <LoadingSpinner></LoadingSpinner>
   }
 
   return (

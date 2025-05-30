@@ -49,9 +49,9 @@ const Navbar = () => {
                         className="tooltip tooltip-bottom"
                         data-tip={user?.displayName}
                     >
-                        {user?.photoURL ? (
+                        {user ? (
                             <img
-                                src={user?.photoURL}
+                                src={user?.photoURL || "https://i.ibb.co/9mm4bKz1/blank-profile-picture-973460-640.png"}
                                 className="w-12 h-12 bg-cover rounded-full"
                                 alt="User"
                             />

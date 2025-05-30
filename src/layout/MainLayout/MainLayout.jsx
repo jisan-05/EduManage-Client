@@ -18,7 +18,7 @@ const MainLayout = () => {
       <div className="max-w-[93%] md:max-w-[94%] lg:max-w-[92%] 2xl:max-w-[1600px] mx-auto flex items-center">
       <Navbar></Navbar>
       </div>
-     <div className='min-h-[calc(100vh-300px)]  max-w-[93%] md:max-w-[94%] lg:max-w-[92%] 2xl:max-w-[1600px] mx-auto "'>
+     <div className=''>
        <Outlet></Outlet>
      </div>
       <Footer></Footer>

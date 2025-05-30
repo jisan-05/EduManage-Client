@@ -11,7 +11,7 @@ import StartJourney from "../../components/StartJourney/StartJourney";
 
 const Home = () => {
     return (
-        <div>
+        <div className="">
             <Banner></Banner>
             <div className="max-w-[93%] md:max-w-[94%] lg:max-w-[92%] 2xl:max-w-[1600px] mx-auto flex items-center">
                 <AboutUs></AboutUs>
@@ -26,7 +26,7 @@ const Home = () => {
                 <FeaturedCourses></FeaturedCourses>
             </div>
             </div>
-            <div className="py-14">
+            <div className=" max-w-[93%] md:max-w-[94%] lg:max-w-[92%] 2xl:max-w-[1600px] mx-auto py-10">
                 <Feedback></Feedback>
             </div>
             <div>

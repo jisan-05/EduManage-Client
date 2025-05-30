@@ -20,9 +20,9 @@ const Feedback = () => {
   if (!feedbacks.length) return <p className="text-center py-10">No feedback available.</p>;
 
   return (
-    <div className="bg-white py-12 px-4  mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">
-        What Students Say
+    <div className="bg-white py-16 px-6 md:px-12 lg:px-24 mx-auto max-w-7xl">
+      <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-gray-900 tracking-tight">
+        What <span className="text-[#07a698]">Students Say</span>
       </h2>
 
       <Swiper
@@ -30,8 +30,8 @@ const Feedback = () => {
         modules={[Navigation, Pagination, Autoplay]}
         navigation
         pagination={{ clickable: true }}
-        autoplay={{ delay: 4000 }}
-        spaceBetween={30}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        spaceBetween={32}
         breakpoints={{
           640: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
@@ -40,28 +40,38 @@ const Feedback = () => {
       >
         {feedbacks.map((fb) => (
           <SwiperSlide key={fb._id}>
-            <div className="bg-gray-200 shadow-md rounded-xl p-6 h-full flex flex-col">
-              <div className="flex items-center gap-4 mb-4">
+            <div className="bg-gray-50 shadow-lg rounded-2xl p-8 h-full flex flex-col transition-transform duration-300 hover:scale-[1.03]">
+              <div className="flex items-center gap-5 mb-6">
                 <img
                   src={fb.image || '/default-avatar.png'}
                   alt={fb.name}
-                  className="w-14 h-14 rounded-full object-cover"
+                  className="w-16 h-16 rounded-full object-cover ring-4 ring-[#07a698]"
+                  loading="lazy"
                 />
                 <div>
-                  <h3 className="font-semibold text-lg text-gray-800">{fb.name}</h3>
-                  <p className="text-sm text-gray-500">{fb.title}</p>
+                  <h3 className="font-semibold text-xl text-gray-900">{fb.name || 'Anonymous'}</h3>
+                  <p className="text-sm text-gray-500">{fb.title || 'Student'}</p>
                 </div>
               </div>
 
-              <p className="text-gray-700 flex-1 mb-3">"{fb.feedbackText}"</p>
+              <p className="text-gray-700 flex-1 mb-6 italic text-lg leading-relaxed">"{fb.feedbackText}"</p>
 
-              <div className="text-yellow-500 text-sm">
-                Rating: {'⭐'.repeat(fb.rating)}
+              <div className="text-yellow-400 text-base font-semibold tracking-wide">
+                Rating: {'⭐'.repeat(fb.rating || 0)}
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* Modern styled meaningful text */}
+      <div className="mt-20 max-w-3xl mx-auto text-center text-gray-700 text-lg md:text-xl leading-relaxed px-4 bg-gradient-to-r from-[#07a698]/10 to-[#00c9a7]/5 rounded-3xl shadow-lg py-10 ring-1 ring-[#07a698]/20 animate-fadeIn">
+        <p>
+          Our students’ voices are the heart of our community. Their stories of growth, resilience, and success inspire us daily.
+          Each testimonial reflects a journey of learning, discovery, and achievement — a true testament to the transformative power 
+          of education. Together, we nurture passion, unlock potential, and empower dreams to become reality.
+        </p>
+      </div>
     </div>
   );
 };

@@ -88,6 +88,18 @@ const Dashboard = () => {
                             collapsed={isCollapsed}
                             to="myClass"
                         />
+                        <NavItem
+                            icon={<FaUsers />}
+                            label="Add Event"
+                            collapsed={isCollapsed}
+                            to="addEvent"
+                        />
+                        <NavItem
+                            icon={<FaUsers />}
+                            label="Manage Events"
+                            collapsed={isCollapsed}
+                            to="manageEvents"
+                        />
 
                         <NavItem
                             icon={<FaUser />}

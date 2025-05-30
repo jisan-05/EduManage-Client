@@ -20,6 +20,8 @@ import UpdateClass from "./components/UpdateClass/UpdataClass";
 import MyEnrollClass from "./pages/Dashboard/MyEnrollClass/MyEnrollClass";
 import MyEnrollClassDetails from "./components/MyEnrollClassDetails/MyEnrollClassDetails";
 import AllClasses from "./components/AllClasses/AllClasses";
+import AddEvent from "./components/AddEvent/AddEvent";
+import ManageEvents from "./components/ManageEvents/ManageEvents";
 
 const router = createBrowserRouter([
     {
@@ -104,6 +106,14 @@ const router = createBrowserRouter([
             {
                 path: "AllClasses",
                 element: <AllClasses></AllClasses>
+            },
+            {
+                path: "addEvent",
+                element: <AddEvent></AddEvent>
+            },
+            {
+                path: "manageEvents",
+                element: <ManageEvents></ManageEvents>
             },
         ],
     },

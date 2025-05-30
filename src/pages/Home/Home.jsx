@@ -6,6 +6,7 @@ import FeaturedCourses from "../../components/FeaturedCourses/FeaturedCourses";
 import StatsSection from "./StatsSection/StatsSection";
 import BecomeTeacher from "./BecomeTeacher/BecomeTeacher";
 import Feedback from "../../components/Feedback/Feedback";
+import OurEvents from "../../components/OurEvents/OurEvents";
 
 const Home = () => {
     return (
@@ -32,6 +33,9 @@ const Home = () => {
             </div>
             <div>
                 <BecomeTeacher></BecomeTeacher>
+            </div>
+            <div className="bg-[#f5f7f8] py-10">
+                <OurEvents></OurEvents>
             </div>
         </div>
     );

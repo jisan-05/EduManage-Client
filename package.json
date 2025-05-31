@@ -20,6 +20,7 @@
     "firebase": "^11.7.1",
     "flowbite-react": "^0.11.7",
     "lottie-react": "^2.4.1",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-datepicker": "^8.4.0",
     "react-dom": "^19.0.0",

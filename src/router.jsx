@@ -22,6 +22,9 @@ import MyEnrollClassDetails from "./components/MyEnrollClassDetails/MyEnrollClas
 import AllClasses from "./components/AllClasses/AllClasses";
 import AddEvent from "./components/AddEvent/AddEvent";
 import ManageEvents from "./components/ManageEvents/ManageEvents";
+import TeacherRoute from "./routes/TeacherRoute";
+import PrivateRoutes from "./routes/PrivetRoutes";
+import AdminRoute from "./routes/AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -67,54 +70,77 @@ const router = createBrowserRouter([
                 index: true,
                 element: <AdminStatistics></AdminStatistics>,
             },
-            {
-                path: "user",
-                element: <User></User>,
-            },
+            // Admin Menu 
             {
                 path: "teacherRequest",
-                element: <TeacherRequest></TeacherRequest>,
+                element: (
+                    <AdminRoute>
+                        <TeacherRequest></TeacherRequest>
+                    </AdminRoute>
+                ),
+            },
+            {
+                path: "user",
+                element: (
+                    <AdminRoute>
+                        <User></User>
+                    </AdminRoute>
+                ),
+            },
+            {
+                path: "AllClasses",
+                element: (
+                    <AdminRoute>
+                        <AllClasses></AllClasses>
+                    </AdminRoute>
+                ),
             },
             {
                 path: "profile",
                 element: <Profile></Profile>,
             },
+            // Teacher Menu 
             {
                 path: "addClass",
-                element: <AddClass></AddClass>,
+                element: (
+                    <TeacherRoute>
+                        <AddClass></AddClass>
+                    </TeacherRoute>
+                ),
             },
             {
                 path: "myClass",
-                element: <MyClass></MyClass>
+                element: <TeacherRoute><MyClass></MyClass></TeacherRoute>,
             },
             {
                 path: "updateClass/:id",
-                element: <UpdateClass></UpdateClass>
+                element: <TeacherRoute><UpdateClass></UpdateClass></TeacherRoute>,
             },
             {
                 path: "myClassDetails/:id",
-                element: <MyClassDetails></MyClassDetails>
-            },
-            {
-                path: "myEnrollClass",
-                element: <MyEnrollClass></MyEnrollClass>
-            },
-            {
-                path: "myEnrollClassDetails/:id",
-                element: <MyEnrollClassDetails></MyEnrollClassDetails>
-            },
-            {
-                path: "AllClasses",
-                element: <AllClasses></AllClasses>
+                element: <TeacherRoute><MyClassDetails></MyClassDetails></TeacherRoute>,
             },
             {
                 path: "addEvent",
-                element: <AddEvent></AddEvent>
+                element: <TeacherRoute><AddEvent></AddEvent></TeacherRoute>,
+            },
+             {
+                path: "manageEvents",
+                element: <TeacherRoute><ManageEvents></ManageEvents></TeacherRoute>,
+            },
+            // Student Menu 
+
+            {
+                path: "myEnrollClass",
+                element: <MyEnrollClass></MyEnrollClass>,
             },
             {
-                path: "manageEvents",
-                element: <ManageEvents></ManageEvents>
+                path: "myEnrollClassDetails/:id",
+                element: <MyEnrollClassDetails></MyEnrollClassDetails>,
             },
+
+            
+           
         ],
     },
 ]);

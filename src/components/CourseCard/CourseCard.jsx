@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CourseCard = ({ data }) => {
-    const { image, price, name, title, description, totalEnrolled, _id } = data || {};
+    const { image, price, name, title, description, enrolled, _id } = data || {};
 
     return (
         <div className="card bg-base-100 w-full shadow-sm px-10 py-10 group">
@@ -26,7 +26,7 @@ const CourseCard = ({ data }) => {
                 </p>
 
                 <p className="text-sm text-gray-500">
-                    <strong>Total Enrolled:</strong> {totalEnrolled || 0}
+                    <strong>Total Enrolled:</strong> {enrolled || 0}
                 </p>
 
                 <div className="divider"></div>
